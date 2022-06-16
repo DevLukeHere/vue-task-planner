@@ -1,18 +1,18 @@
 <template>
-  <HelloWorld />
+  <TaskPlanner />
 </template>
 
 <script>
 import { defineComponent } from 'vue';
 
 // Components
-import HelloWorld from '../components/HelloWorld.vue';
+import TaskPlanner from '../components/TaskPlanner.vue';
 
 export default defineComponent({
   name: 'HomeView',
 
   components: {
-    HelloWorld,
+    TaskPlanner,
   },
 });
 </script>
