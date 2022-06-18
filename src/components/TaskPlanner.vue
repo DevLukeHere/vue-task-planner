@@ -1,25 +1,29 @@
 <template>
   <v-container>
-    <v-row class="text-center">
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to the Vuetify 3 Beta
-        </h1>
-        <v-btn prepend>Vuetify 3 Button</v-btn>
-        <v-btn class="ma-2" color="primary">
-          vuetify 3 button
-          <v-icon end icon="mdi-checkbox-marked-circle"></v-icon>
-        </v-btn>
-      </v-col>
+    <v-row no-gutters class="mb-6">
+      <ProgressBar />
+    </v-row>
+    <v-row no-gutters offse>
+      <AddTaskButton />
+      <FilterButton />
     </v-row>
   </v-container>
 </template>
 
 <script>
 import logo from "../assets/logo.svg";
+import ProgressBar from "./ProgressBar.vue";
+import AddTaskButton from "./AddTaskButton.vue";
+import FilterButton from "./FilterButton.vue";
 
 export default {
   name: "TaskPlanner",
+
+  components: {
+    ProgressBar,
+    AddTaskButton,
+    FilterButton,
+  },
 
   data: () => ({
     ecosystem: [
