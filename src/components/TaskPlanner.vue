@@ -3,7 +3,7 @@
     <v-row no-gutters class="mb-6">
       <ProgressBar />
     </v-row>
-    <v-row no-gutters offse>
+    <v-row no-gutters offset>
       <AddTaskButton />
       <FilterButton />
     </v-row>
