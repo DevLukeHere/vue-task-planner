@@ -17,20 +17,21 @@
             required
             @change="setTask"
           ></v-text-field>
-          <v-text-field
+          <v-textarea
+            outlined
+            label="Task description"
+            required
             v-model="description"
-            :rules="nameRules"
-            label="Description"
-            required
             @change="setDescription"
-          ></v-text-field>
-          <v-text-field
-            v-model="time"
-            :rules="nameRules"
-            label="Estimated Time"
-            required
-            @change="setEstimatedTime"
-          ></v-text-field>
+          ></v-textarea>
+          <DatePicker
+            v-model="picked"
+            :locale="locale"
+            :upperLimit="to"
+            :lowerLimit="from"
+            :clearable="true"
+            class="date-picker"
+          />
         </v-form>
       </v-card-text>
       <v-card-actions>
@@ -48,31 +49,32 @@
 
 <script>
 import { defineComponent } from "vue";
+import DatePicker from "vue3-datepicker";
 
 export default defineComponent({
   name: "AddTaskButton",
 
+  components: {
+    DatePicker,
+  },
+
   methods: {
     setTask(e) {
-      const task = e.target.value
+      const task = e.target.value;
       this.$store.commit("setTask", task);
       console.log(this.$store.state.task);
     },
     setDescription(e) {
-      const description = e.target.value
+      const description = e.target.value;
       this.$store.commit("setTaskDescription", description);
       console.log(this.$store.state.taskDescription);
     },
-    setTask(e) {
-      const estimatedTime = e.target.value
-      this.$store.commit("setEstimatedTime", estimatedTime);
-      console.log(this.$store.state.estimatedTime);
-    }
   },
 
   data() {
     return {
       dialog: false,
+      picked: new Date(),
     };
   },
 });
@@ -81,5 +83,8 @@ export default defineComponent({
 <style>
 .v-overlay__content {
   min-width: 30rem;
+}
+.date-picker {
+  border: 1px solid black;
 }
 </style>
