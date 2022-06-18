@@ -1,23 +1,22 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex";
 
 // Create a new store instance.
 export default createStore({
-  state () {
+  state() {
     return {
       task: "",
       taskDescription: "",
-      estimatedTime: ""
-    }
+      pending: [],
+      inProgress: [],
+      completed: [],
+    };
   },
   mutations: {
-    setTask (state, payload) {
-      return state.task = payload
+    setTask(state, payload) {
+      return (state.task = payload);
     },
-    setTaskDescription (state, payload) {
-      return state.taskDescription = payload
+    setTaskDescription(state, payload) {
+      return (state.taskDescription = payload);
     },
-    setEstimatedTime (state, payload) {
-      return state.estimatedTime = payload
-    },
-  }
-})
+  },
+});
