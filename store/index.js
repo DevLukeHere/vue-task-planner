@@ -18,5 +18,8 @@ export default createStore({
     setTaskDescription(state, payload) {
       return (state.taskDescription = payload);
     },
+    setPending(state, payload) {
+      return (state.pending = [...state.pending, payload]);
+    },
   },
 });
