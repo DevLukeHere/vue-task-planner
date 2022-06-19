@@ -40,7 +40,7 @@
           Close
         </v-btn>
         <v-btn color="blue-darken-1" :disabled="!valid" text @click="validate"
-          >Save</v-btn
+          >Add</v-btn
         >
       </v-card-actions>
     </v-card>
