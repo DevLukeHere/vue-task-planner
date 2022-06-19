@@ -5,8 +5,15 @@
         >add task</v-btn
       >
     </template>
-    <v-card>
-      <v-card-title>Task details</v-card-title>
+    <v-card :style="{ borderRadius: `1rem` }">
+      <v-card-title :style="{ justifyContent: `space-between` }"
+        >Task details
+        <v-btn
+          @click="dialog = false"
+          icon="mdi-close"
+          :style="{ background: `transparent`, boxShadow: `none` }"
+        ></v-btn
+      ></v-card-title>
       <v-card-subtitle>Please enter task details</v-card-subtitle>
       <v-card-text>
         <v-form ref="form" v-model="valid" lazy-validation>
@@ -24,22 +31,31 @@
             v-model="description"
             @change="setDescription"
           ></v-textarea>
-          <DatePicker
+          <!-- <DatePicker
             v-model="picked"
             :locale="locale"
             :upperLimit="to"
             :lowerLimit="from"
             :clearable="true"
             class="date-picker"
-          />
+          /> -->
         </v-form>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue-darken-1" text @click="dialog = false">
-          Close
+        <v-btn
+          :style="{ textTransform: `lowercase` }"
+          prepend-icon="mdi-sticker-plus-outline"
+          :disabled="
+            !this.$store.state.task || !this.$store.state.taskDescription
+              ? true
+              : false
+          "
+          text
+          @click="setPending"
+        >
+          add task
         </v-btn>
-        <v-btn color="blue-darken-1" text @click="setPending">Add</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -65,6 +81,7 @@ export default defineComponent({
         description: this.$store.state.taskDescription,
       };
       this.$store.commit("setPending", params);
+      this.dialog = false;
     },
     setTask(e) {
       const task = e.target.value;

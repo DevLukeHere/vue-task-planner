@@ -40,8 +40,11 @@ export default defineComponent({
     deleteTask(task) {
       // const filterList = this.$store.state.pending.filter(element => element !== id)
       // this.$store.commit("setPending", filterList)
-      // const filterList = this.$store.state.pending.splice(this.$store.state.pending.indexOf(task), 1)
-      // this.$store.commit("setPending", filterList)
+      const filterList = this.$store.state.pending.splice(
+        this.$store.state.pending.indexOf(task),
+        1
+      );
+      this.$store.commit("setPending", filterList);
       // console.log("filterList:", filterList)
     },
     startDrag(e, task) {
