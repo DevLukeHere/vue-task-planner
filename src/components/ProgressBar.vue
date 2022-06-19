@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <h3>Progress</h3>
+      <h3>Overall Task Completion</h3>
       <v-progress-linear
         model-value="20"
         color="light-green darken-4"
