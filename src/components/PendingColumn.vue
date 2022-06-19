@@ -1,6 +1,15 @@
 <template>
   <div>
-    <h3>Pending</h3>
+    <div class="pending-title-div">
+      <h3 class="pending-title">Pending</h3>
+    </div>
+    <h4 class="mb-6">
+      You have
+      <span class="pending-task-count">{{
+        this.$store.state.pending.length
+      }}</span>
+      task(s) to complete
+    </h4>
     <div class="pending-column">
       <TaskCard />
     </div>
@@ -16,7 +25,9 @@ export default defineComponent({
 
   components: { TaskCard },
 
-  methods: {},
+  methods: {
+    //
+  },
 
   data() {
     return {
@@ -28,7 +39,14 @@ export default defineComponent({
 
 <style>
 .pending-column {
-  border: 1px solid black;
   height: 100vh;
+}
+.pending-task-count {
+  color: hsl(0, 85%, 70%);
+}
+.pending-title-div {
+  color: #000000;
+  background: hsl(0, 85%, 70%);
+  border-radius: 0.5rem;
 }
 </style>

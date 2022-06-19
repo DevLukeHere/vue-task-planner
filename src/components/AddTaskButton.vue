@@ -39,9 +39,7 @@
         <v-btn color="blue-darken-1" text @click="dialog = false">
           Close
         </v-btn>
-        <v-btn color="blue-darken-1" :disabled="!valid" text @click="validate"
-          >Add</v-btn
-        >
+        <v-btn color="blue-darken-1" text @click="setPending">Add</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -59,15 +57,22 @@ export default defineComponent({
   },
 
   methods: {
+    setPending() {
+      let id = Math.floor(Math.random() * 100);
+      const params = {
+        id: id,
+        title: this.$store.state.task,
+        description: this.$store.state.taskDescription,
+      };
+      this.$store.commit("setPending", params);
+    },
     setTask(e) {
       const task = e.target.value;
       this.$store.commit("setTask", task);
-      console.log(this.$store.state.task);
     },
     setDescription(e) {
       const description = e.target.value;
       this.$store.commit("setTaskDescription", description);
-      console.log(this.$store.state.taskDescription);
     },
   },
 
