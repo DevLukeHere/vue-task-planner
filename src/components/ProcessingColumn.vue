@@ -1,7 +1,21 @@
 <template>
   <div>
-    <h3>Processing</h3>
-    <div class="processing-column"></div>
+    <div class="processing-title-div">
+      <h3 class="processing-title">Processing</h3>
+    </div>
+    <h4 class="mb-6">
+      You have
+      <span class="processing-task-count">{{
+        this.$store.state.inProgress.length
+      }}</span>
+      task(s) in progress
+    </h4>
+    <div
+      @drop="onDrop($event, 1)"
+      @dragover.prevent
+      @dragenter.prevent
+      class="processing-column"
+    ></div>
   </div>
 </template>
 
@@ -17,7 +31,11 @@ export default defineComponent({
 
   data() {
     return {
-      //
+      onDrop(e, list) {
+        const taskID = e.dataTransfer.getData("taskID");
+        const task = this.tasks.find((task) => task.id == taskID);
+        task.list = list;
+      },
     };
   },
 });
@@ -25,7 +43,14 @@ export default defineComponent({
 
 <style>
 .processing-column {
-  border: 1px solid black;
   height: 100vh;
+}
+.processing-task-count {
+  color: hsl(34, 86%, 70%);
+}
+.processing-title-div {
+  color: #000000;
+  background: hsl(34, 86%, 70%);
+  border-radius: 0.5rem;
 }
 </style>
