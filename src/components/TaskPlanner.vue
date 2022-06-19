@@ -3,7 +3,7 @@
     <v-row no-gutters class="mb-6">
       <ProgressBar />
     </v-row>
-    <v-row no-gutters offset class="mb-6">
+    <v-row no-gutters offset class="mb-16 mt-16 button-container">
       <AddTaskButton />
       <FilterButton />
     </v-row>
@@ -11,9 +11,11 @@
       <v-col>
         <PendingColumn />
       </v-col>
+      <v-spacer></v-spacer>
       <v-col>
         <ProcessingColumn />
       </v-col>
+      <v-spacer></v-spacer>
       <v-col>
         <DoneColumn />
       </v-col>
@@ -43,59 +45,17 @@ export default {
   },
 
   data: () => ({
-    ecosystem: [
-      {
-        text: "vuetify-loader",
-        href: "https://github.com/vuetifyjs/vuetify-loader",
-      },
-      {
-        text: "github",
-        href: "https://github.com/vuetifyjs/vuetify",
-      },
-      {
-        text: "awesome-vuetify",
-        href: "https://github.com/vuetifyjs/awesome-vuetify",
-      },
-    ],
-    importantLinks: [
-      {
-        text: "Chat",
-        href: "https://community.vuetifyjs.com",
-      },
-      {
-        text: "Made with Vuetify",
-        href: "https://madewithvuejs.com/vuetify",
-      },
-      {
-        text: "Twitter",
-        href: "https://twitter.com/vuetifyjs",
-      },
-      {
-        text: "Articles",
-        href: "https://medium.com/vuetify",
-      },
-    ],
-    logo,
-    whatsNext: [
-      {
-        text: "Explore components",
-        href: "https://vuetifyjs.com",
-      },
-      {
-        text: "Roadmap",
-        href: "https://vuetifyjs.com/introduction/roadmap/",
-      },
-      {
-        text: "Frequently Asked Questions",
-        href: "https://vuetifyjs.com/getting-started/frequently-asked-questions",
-      },
-    ],
+    //
   }),
 };
 </script>
 
 <style>
-h3 {
+h3,
+h4 {
   text-align: center;
+}
+.button-container {
+  justify-content: flex-end;
 }
 </style>
