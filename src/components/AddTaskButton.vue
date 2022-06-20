@@ -43,16 +43,19 @@
                 color="hsl(0, 85%, 70%)"
                 label="pending"
                 value="pending"
+                disabled
               ></v-radio>
               <v-radio
                 color="hsl(34, 86%, 70%)"
                 label="processing"
                 value="processing"
+                disabled
               ></v-radio>
               <v-radio
                 color="hsl(138, 86%, 55%)"
                 label="done"
                 value="done"
+                disabled
               ></v-radio>
             </v-radio-group>
           </v-row>
