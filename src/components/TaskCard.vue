@@ -10,15 +10,23 @@
   >
     <v-card-title class="card-title">{{ task.title }}</v-card-title>
     <v-card-text
-      ><span class="task-subtitle">description:{{ " " }}</span
+      ><span class="task-subtitle"
+        ><v-icon icon="mr-1 mdi-comment-text-outline"></v-icon>description:{{
+          " "
+        }}</span
       >{{ task.description }}</v-card-text
     >
     <v-card-text
-      ><span class="task-subtitle">completion time:{{ " " }}</span
+      ><span class="task-subtitle"
+        ><v-icon icon="mr-1 mdi-calendar-clock"></v-icon>completion time:{{
+          " "
+        }}</span
       >3 Aug at 13:00</v-card-text
     >
     <v-card-text v-if="task.tags.length !== 0">
-      <p class="tags-subtitle mb-2">tags</p>
+      <p class="tags-subtitle mb-2">
+        <v-icon icon="mr-1 mdi-tag-multiple-outline"></v-icon>tags
+      </p>
       <v-chip
         v-for="(tag, index) in task.tags"
         :key="index"
