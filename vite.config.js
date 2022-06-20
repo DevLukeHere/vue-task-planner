@@ -8,7 +8,7 @@ import vuetify from "vite-plugin-vuetify";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "https://lukewzk.github.io/vue-task-planner/",
+  base: "https://lukewzk.github.io/",
   plugins: [vue(), vuetify({ autoImport: true })],
   resolve: {
     alias: {
