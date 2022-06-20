@@ -7,30 +7,56 @@
     </template>
     <v-card :style="{ borderRadius: `1rem` }">
       <v-card-title :style="{ justifyContent: `space-between` }"
-        >Task details
+        >task details
         <v-btn
           @click="dialog = false"
           icon="mdi-close"
           :style="{ background: `transparent`, boxShadow: `none` }"
         ></v-btn
       ></v-card-title>
-      <v-card-subtitle>Please enter task details</v-card-subtitle>
+      <v-card-subtitle>please enter task details.</v-card-subtitle>
       <v-card-text>
         <v-form ref="form" v-model="valid" lazy-validation>
           <v-text-field
             v-model="task"
             :rules="nameRules"
-            label="Task"
+            label="title*"
             required
+            variant="outlined"
             @change="setTask"
           ></v-text-field>
           <v-textarea
             outlined
-            label="Task description"
+            label="description*"
             required
+            variant="outlined"
             v-model="description"
             @change="setDescription"
           ></v-textarea>
+          <p class="task-status-title">task status</p>
+          <v-row :style="{ justifyContent: `space-evenly` }">
+            <div v-for="checkbox in checkboxes">
+              <v-checkbox
+                :color="checkbox.color"
+                :label="checkbox.label"
+                :value="checkbox.value"
+                :key="checkbox.id"
+              ></v-checkbox>
+            </div>
+          </v-row>
+          <v-combobox
+            v-model="select"
+            :items="items"
+            label="tags"
+            multiple
+            chips
+          ></v-combobox>
+          <v-btn
+            :style="{ borderRadius: `1rem`, textTransform: `lowercase` }"
+            prepend-icon="mdi-cloud-upload"
+          >
+            upload attachments
+          </v-btn>
           <!-- <DatePicker
             v-model="picked"
             :locale="locale"
@@ -97,6 +123,30 @@ export default defineComponent({
     return {
       dialog: false,
       picked: new Date(),
+      items: [
+        "#bugfix",
+        "#hotfix",
+        "#feature",
+        "#main",
+        "#development",
+        "#staging",
+      ],
+      checkboxes: [
+        {
+          label: "pending",
+          id: "1",
+          value: "pending",
+          color: "hsl(0, 85%, 70%)",
+        },
+        {
+          label: "processing",
+          id: "2",
+          value: "processing",
+          color: "hsl(34, 86%, 70%)",
+        },
+        { label: "done", id: "3", value: "done", color: "hsl(138, 86%, 55%)" },
+      ],
+      select: [],
     };
   },
 });
@@ -108,5 +158,11 @@ export default defineComponent({
 }
 .date-picker {
   border: 1px solid black;
+}
+.v-combobox__selection {
+  margin-top: 0.5rem;
+}
+.task-status-title {
+  margin-bottom: 1rem;
 }
 </style>
