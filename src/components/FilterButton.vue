@@ -1,6 +1,11 @@
 <template>
   <div class="ml-4">
-    <v-btn prepend-icon="mdi-feature-search-outline">search & filter</v-btn>
+    <v-btn
+      :style="{ textTransform: `lowercase` }"
+      @click="setShowSearch"
+      prepend-icon="mdi-feature-search-outline"
+      >search & filter</v-btn
+    >
   </div>
 </template>
 
@@ -9,6 +14,13 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "FilterButton",
+
+  methods: {
+    setShowSearch() {
+      this.$store.commit("setShowSearch");
+      console.log("showSearch:", this.$store.state.showSearch);
+    },
+  },
 });
 </script>
 

@@ -3,9 +3,12 @@
     <v-row no-gutters class="mb-6">
       <ProgressBar />
     </v-row>
-    <v-row no-gutters offset class="mb-16 mt-16 button-container">
+    <v-row no-gutters offset class="mb-8 mt-16 button-container">
       <AddTaskButton />
       <FilterButton />
+    </v-row>
+    <v-row no-gutters offset class="mb-10">
+      <Searchbar />
     </v-row>
     <v-row no-gutters>
       <v-col>
@@ -24,13 +27,13 @@
 </template>
 
 <script>
-import logo from "../assets/logo.svg";
 import ProgressBar from "./ProgressBar.vue";
 import AddTaskButton from "./AddTaskButton.vue";
 import FilterButton from "./FilterButton.vue";
 import PendingColumn from "./PendingColumn.vue";
 import ProcessingColumn from "./ProcessingColumn.vue";
 import DoneColumn from "./DoneColumn.vue";
+import Searchbar from "./Searchbar.vue";
 
 export default {
   name: "TaskPlanner",
@@ -42,6 +45,7 @@ export default {
     PendingColumn,
     ProcessingColumn,
     DoneColumn,
+    Searchbar,
   },
 
   data: () => ({

@@ -11,6 +11,7 @@ export default createStore({
       pending: [],
       inProgress: [],
       completed: [],
+      showSearch: false,
     };
   },
   mutations: {
@@ -28,10 +29,13 @@ export default createStore({
       state.pending.splice(index, 1);
     },
     clearForm(state, payload) {
-      state.task = ""
-      state.taskDescription = ""
-      state.status = ""
-      state.tags = []
+      state.task = "";
+      state.taskDescription = "";
+      state.status = "";
+      state.tags = [];
+    },
+    setShowSearch(state, payload) {
+      state.showSearch = !state.showSearch;
     },
   },
 });
