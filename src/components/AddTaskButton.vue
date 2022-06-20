@@ -36,7 +36,7 @@
             v-model="description"
             @change="setDescription"
           ></v-textarea>
-          <p class="task-status-title">task status</p>
+          <p class="task-status-title">please select status of task</p>
           <v-row>
             <v-radio-group v-model="inline" inline>
               <v-radio
@@ -66,6 +66,7 @@
           <v-btn
             :style="{ borderRadius: `1rem`, textTransform: `lowercase` }"
             prepend-icon="mdi-cloud-upload"
+            disabled
           >
             upload attachments
           </v-btn>
