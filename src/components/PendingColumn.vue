@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="pending-title-div">
-      <h3 class="pending-title">Pending</h3>
+      <h3 class="pending-title">pending</h3>
     </div>
     <h4 class="mb-6">
-      You have
+      you have
       <span class="pending-task-count">{{
         this.$store.state.pending.length
       }}</span>

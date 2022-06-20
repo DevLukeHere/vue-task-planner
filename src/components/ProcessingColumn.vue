@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="processing-title-div">
-      <h3 class="processing-title">Processing</h3>
+      <h3 class="processing-title">processing</h3>
     </div>
     <h4 class="mb-6">
-      You have
+      you have
       <span class="processing-task-count">{{
         this.$store.state.inProgress.length
       }}</span>

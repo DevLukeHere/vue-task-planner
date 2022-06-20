@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="done-title-div">
-      <h3 class="done-title">Done</h3>
+      <h3 class="done-title">done</h3>
     </div>
     <h4 class="mb-6">
-      You have completed
+      you have completed
       <span class="done-task-count">{{
         this.$store.state.completed.length
       }}</span>

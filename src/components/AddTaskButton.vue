@@ -1,7 +1,10 @@
 <template>
   <v-dialog v-model="dialog" persistent>
     <template v-slot:activator="{ props }">
-      <v-btn prepend-icon="mdi-sticker-plus-outline" v-bind="props"
+      <v-btn
+        :style="{ textTransform: `lowercase` }"
+        prepend-icon="mdi-sticker-plus-outline"
+        v-bind="props"
         >add task</v-btn
       >
     </template>
