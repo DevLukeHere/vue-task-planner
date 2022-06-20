@@ -10,13 +10,25 @@
   >
     <v-card-title class="card-title">{{ task.title }}</v-card-title>
     <v-card-text
-      ><span class="task-subtitle">Description:{{ " " }}</span
+      ><span class="task-subtitle">description:{{ " " }}</span
       >{{ task.description }}</v-card-text
     >
     <v-card-text
-      ><span class="task-subtitle">Estimated completion time:{{ " " }}</span
-      >13:00</v-card-text
+      ><span class="task-subtitle">completion time:{{ " " }}</span
+      >3 Aug at 13:00</v-card-text
     >
+    <v-card-text v-if="task.tags.length !== 0">
+      <p class="tags-subtitle mb-2">tags</p>
+      <v-chip
+        v-for="(tag, index) in task.tags"
+        :key="index"
+        color="primary"
+        class="ml-1"
+        size="x-small"
+        outlined
+        >{{ tag }}</v-chip
+      >
+    </v-card-text>
     <v-card-actions>
       <v-btn
         v-on:click="deleteTask(task)"
@@ -38,14 +50,7 @@ export default defineComponent({
 
   methods: {
     deleteTask(task) {
-      // const filterList = this.$store.state.pending.filter(element => element !== id)
-      // this.$store.commit("setPending", filterList)
-      const filterList = this.$store.state.pending.splice(
-        this.$store.state.pending.indexOf(task),
-        1
-      );
-      this.$store.commit("setPending", filterList);
-      // console.log("filterList:", filterList)
+      this.$store.commit("removePending", task);
     },
     startDrag(e, task) {
       e.dataTransfer.dropEffect = "move";
@@ -80,6 +85,9 @@ export default defineComponent({
   background: hsl(30, 14%, 95%);
 }
 .task-subtitle {
+  font-weight: bold;
+}
+.tags-subtitle {
   font-weight: bold;
 }
 </style>

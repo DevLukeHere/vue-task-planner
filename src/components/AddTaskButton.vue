@@ -9,7 +9,7 @@
       <v-card-title :style="{ justifyContent: `space-between` }"
         >task details
         <v-btn
-          @click="dialog = false"
+          @click="closeDialog"
           icon="mdi-close"
           :style="{ background: `transparent`, boxShadow: `none` }"
         ></v-btn
@@ -54,7 +54,7 @@
             </v-radio-group>
           </v-row>
           <v-combobox
-            v-model="select"
+            v-model="this.$store.state.tags"
             :items="items"
             label="tags"
             multiple
@@ -67,13 +67,13 @@
             upload attachments
           </v-btn>
           <!-- <DatePicker
-            v-model="picked"
-            :locale="locale"
-            :upperLimit="to"
-            :lowerLimit="from"
-            :clearable="true"
-            class="date-picker"
-          /> -->
+              v-model="picked"
+              :locale="locale"
+              :upperLimit="to"
+              :lowerLimit="from"
+              :clearable="true"
+              class="date-picker"
+            /> -->
         </v-form>
       </v-card-text>
       <v-card-actions>
@@ -114,8 +114,12 @@ export default defineComponent({
         id: id,
         title: this.$store.state.task,
         description: this.$store.state.taskDescription,
+        status: this.$store.state.status,
+        tags: this.$store.state.tags,
       };
       this.$store.commit("setPending", params);
+      this.$refs.form.reset();
+      this.$store.commit("clearForm");
       this.dialog = false;
     },
     setTask(e) {
@@ -125,6 +129,11 @@ export default defineComponent({
     setDescription(e) {
       const description = e.target.value;
       this.$store.commit("setTaskDescription", description);
+    },
+    closeDialog() {
+      this.dialog = false;
+      this.$refs.form.reset();
+      this.$store.commit("clearForm");
     },
   },
 
@@ -139,9 +148,8 @@ export default defineComponent({
         "#main",
         "#development",
         "#staging",
+        "#misc",
       ],
-      select: [],
-      radioGroup: 3,
       inline: null,
     };
   },
@@ -154,9 +162,6 @@ export default defineComponent({
 }
 .date-picker {
   border: 1px solid black;
-}
-.v-combobox__selection {
-  margin-top: 0.5rem;
 }
 .task-status-title {
   margin-bottom: 1rem;

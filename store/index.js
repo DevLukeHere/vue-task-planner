@@ -6,6 +6,8 @@ export default createStore({
     return {
       task: "",
       taskDescription: "",
+      status: "",
+      tags: [],
       pending: [],
       inProgress: [],
       completed: [],
@@ -13,13 +15,23 @@ export default createStore({
   },
   mutations: {
     setTask(state, payload) {
-      return (state.task = payload);
+      state.task = payload;
     },
     setTaskDescription(state, payload) {
-      return (state.taskDescription = payload);
+      state.taskDescription = payload;
     },
     setPending(state, payload) {
-      return (state.pending = [...state.pending, payload]);
+      state.pending = [...state.pending, payload];
+    },
+    removePending(state, payload) {
+      let index = state.pending.findIndex((c) => c.id == payload.id);
+      state.pending.splice(index, 1);
+    },
+    clearForm(state, payload) {
+      state.task = ""
+      state.taskDescription = ""
+      state.status = ""
+      state.tags = []
     },
   },
 });
