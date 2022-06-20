@@ -34,15 +34,24 @@
             @change="setDescription"
           ></v-textarea>
           <p class="task-status-title">task status</p>
-          <v-row :style="{ justifyContent: `space-evenly` }">
-            <div v-for="checkbox in checkboxes">
-              <v-checkbox
-                :color="checkbox.color"
-                :label="checkbox.label"
-                :value="checkbox.value"
-                :key="checkbox.id"
-              ></v-checkbox>
-            </div>
+          <v-row>
+            <v-radio-group v-model="inline" inline>
+              <v-radio
+                color="hsl(0, 85%, 70%)"
+                label="pending"
+                value="pending"
+              ></v-radio>
+              <v-radio
+                color="hsl(34, 86%, 70%)"
+                label="processing"
+                value="processing"
+              ></v-radio>
+              <v-radio
+                color="hsl(138, 86%, 55%)"
+                label="done"
+                value="done"
+              ></v-radio>
+            </v-radio-group>
           </v-row>
           <v-combobox
             v-model="select"
@@ -131,22 +140,9 @@ export default defineComponent({
         "#development",
         "#staging",
       ],
-      checkboxes: [
-        {
-          label: "pending",
-          id: "1",
-          value: "pending",
-          color: "hsl(0, 85%, 70%)",
-        },
-        {
-          label: "processing",
-          id: "2",
-          value: "processing",
-          color: "hsl(34, 86%, 70%)",
-        },
-        { label: "done", id: "3", value: "done", color: "hsl(138, 86%, 55%)" },
-      ],
       select: [],
+      radioGroup: 3,
+      inline: null,
     };
   },
 });
