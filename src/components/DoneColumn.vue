@@ -8,7 +8,7 @@
       <span class="done-task-count">{{
         this.$store.state.completed.length
       }}</span>
-      task(s)
+      task<span v-if="this.$store.state.completed.length > 1">s</span>
     </h4>
     <div class="done-column"></div>
   </div>

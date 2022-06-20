@@ -8,7 +8,8 @@
       <span class="processing-task-count">{{
         this.$store.state.inProgress.length
       }}</span>
-      task(s) in progress
+      task<span v-if="this.$store.state.inProgress.length > 1">s</span> in
+      progress
     </h4>
     <div
       @drop="onDrop($event, 1)"

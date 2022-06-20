@@ -8,7 +8,7 @@
       <span class="pending-task-count">{{
         this.$store.state.pending.length
       }}</span>
-      task(s) to complete
+      task<span v-if="this.$store.state.pending.length > 1">s</span> to complete
     </h4>
     <div class="pending-column">
       <TaskCard />
