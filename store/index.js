@@ -12,6 +12,7 @@ export default createStore({
       inProgress: [],
       completed: [],
       showSearch: false,
+      selectedTask: [],
     };
   },
   mutations: {
@@ -25,8 +26,28 @@ export default createStore({
       state.pending = [...state.pending, payload];
     },
     removePending(state, payload) {
-      let index = state.pending.findIndex((c) => c.id == payload.id);
+      let index = state.pending.findIndex(
+        (pendingTask) => pendingTask.id == payload.id
+      );
       state.pending.splice(index, 1);
+    },
+    setInProgress(state, payload) {
+      state.inProgress = [...state.inProgress, payload];
+    },
+    removeInProgress(state, payload) {
+      let index = state.inProgress.findIndex(
+        (inProgressTask) => inProgressTask.id == payload.id
+      );
+      state.inProgress.splice(index, 1);
+    },
+    setCompleted(state, payload) {
+      state.completed = [...state.completed, payload];
+    },
+    removeCompleted(state, payload) {
+      let index = state.completed.findIndex(
+        (completedTask) => completedTask.id == payload.id
+      );
+      state.completed.splice(index, 1);
     },
     clearForm(state, payload) {
       state.task = "";
@@ -36,6 +57,9 @@ export default createStore({
     },
     setShowSearch(state, payload) {
       state.showSearch = !state.showSearch;
+    },
+    setSelectedTask(state, payload) {
+      state.selectedTask = [payload];
     },
   },
 });
