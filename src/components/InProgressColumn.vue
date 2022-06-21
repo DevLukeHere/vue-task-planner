@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="processing-title-div">
-      <h3 class="processing-title">processing</h3>
+      <h3 class="processing-title">in progress</h3>
     </div>
     <h4 class="mb-6">
       you have
@@ -16,26 +16,29 @@
       @dragover.prevent
       @dragenter.prevent
       class="processing-column"
-    ></div>
+    >
+      <ProcessingTaskCard />
+    </div>
   </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
+import ProcessingTaskCard from "./ProcessingTaskCard.vue";
 
 export default defineComponent({
-  name: "ProcessingColumn",
+  name: "InProgressColumn",
 
-  components: {},
+  components: { ProcessingTaskCard },
 
   methods: {},
 
   data() {
     return {
       onDrop(e, list) {
-        const taskID = e.dataTransfer.getData("taskID");
-        const task = this.tasks.find((task) => task.id == taskID);
-        task.list = list;
+        // const taskID = e.dataTransfer.getData("taskID");
+        // const task = this.tasks.find((task) => task.id == taskID);
+        this.$store.commit("setInProgress", this.$store.state.selectedTask[0]);
       },
     };
   },

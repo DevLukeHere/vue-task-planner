@@ -16,11 +16,11 @@
       </v-col>
       <v-spacer></v-spacer>
       <v-col>
-        <ProcessingColumn />
+        <InProgressColumn />
       </v-col>
       <v-spacer></v-spacer>
       <v-col>
-        <DoneColumn />
+        <CompletedColumn />
       </v-col>
     </v-row>
   </v-container>
@@ -31,8 +31,8 @@ import ProgressBar from "./ProgressBar.vue";
 import AddTaskButton from "./AddTaskButton.vue";
 import FilterButton from "./FilterButton.vue";
 import PendingColumn from "./PendingColumn.vue";
-import ProcessingColumn from "./ProcessingColumn.vue";
-import DoneColumn from "./DoneColumn.vue";
+import InProgressColumn from "./InProgressColumn.vue";
+import CompletedColumn from "./CompletedColumn.vue";
 import Searchbar from "./Searchbar.vue";
 
 export default {
@@ -43,8 +43,8 @@ export default {
     AddTaskButton,
     FilterButton,
     PendingColumn,
-    ProcessingColumn,
-    DoneColumn,
+    InProgressColumn,
+    CompletedColumn,
     Searchbar,
   },
 

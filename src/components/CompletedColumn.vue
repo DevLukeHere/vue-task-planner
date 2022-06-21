@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="done-title-div">
-      <h3 class="done-title">done</h3>
+      <h3 class="done-title">completed</h3>
     </div>
     <h4 class="mb-6">
       you have completed
@@ -10,17 +10,18 @@
       }}</span>
       task<span v-if="this.$store.state.completed.length > 1">s</span>
     </h4>
-    <div class="done-column"></div>
+    <div class="done-column"><CompletedTaskCard /></div>
   </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
+import CompletedTaskCard from "./CompletedTaskCard.vue";
 
 export default defineComponent({
-  name: "DoneColumn",
+  name: "CompletedColumn",
 
-  components: {},
+  components: { CompletedTaskCard },
 
   methods: {},
 

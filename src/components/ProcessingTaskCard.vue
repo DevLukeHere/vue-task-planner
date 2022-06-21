@@ -1,14 +1,12 @@
 <template>
   <v-card
-    v-for="(task, index) in this.$store.state.pending"
+    v-for="(task, index) in this.$store.state.inProgress"
     :key="task.id"
     tonal
     variant="outlined"
     class="task-card mb-8"
-    :draggable="true"
-    @dragstart="startDrag($event, task)"
   >
-    <v-card-title class="card-title">{{ task.title }}</v-card-title>
+    <v-card-title class="card-title-processing">{{ task.title }}</v-card-title>
     <v-card-text
       ><span class="task-subtitle"
         ><v-icon icon="mr-1 mdi-comment-text-outline"></v-icon>description:{{
@@ -52,20 +50,13 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "TaskCard",
+  name: "ProcessingTaskCard",
 
   components: {},
 
   methods: {
     deleteTask(task) {
-      this.$store.commit("removePending", task);
-    },
-    startDrag(e, task) {
-      e.dataTransfer.dropEffect = "move";
-      e.dataTransfer.effectAllowed = "move";
-      // e.dataTransfer.setData("taskID", task.id);
-      // const dataTransfer = e.dataTransfer.setData("taskID", task.id);
-      this.$store.commit("setSelectedTask", task);
+      this.$store.commit("removeInProgress", task);
     },
   },
 
@@ -78,8 +69,8 @@ export default defineComponent({
 </script>
 
 <style>
-.card-title {
-  background: hsl(0, 85%, 70%);
+.card-title-processing {
+  background: hsl(34, 86%, 70%);
   border-radius: 1.5rem 1.5rem 0 0;
   justify-content: center;
   min-height: 3rem;
