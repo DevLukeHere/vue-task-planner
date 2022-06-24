@@ -121,7 +121,8 @@ export default defineComponent({
         id: id,
         title: this.$store.state.task,
         description: this.$store.state.taskDescription,
-        status: this.$store.state.status,
+        // status: this.$store.state.status,
+        status: "pending",
         tags: this.$store.state.tags,
       };
       this.$store.commit("setPending", params);

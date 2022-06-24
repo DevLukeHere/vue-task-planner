@@ -13,6 +13,7 @@ export default createStore({
       completed: [],
       showSearch: false,
       selectedTask: [],
+      taskOnDrag: {},
     };
   },
   mutations: {
@@ -60,6 +61,9 @@ export default createStore({
     },
     setSelectedTask(state, payload) {
       state.selectedTask = [payload];
+    },
+    setOnDrag(state, payload) {
+      state.taskOnDrag = payload;
     },
   },
 });

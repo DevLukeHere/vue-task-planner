@@ -36,9 +36,14 @@ export default defineComponent({
   data() {
     return {
       onDrop(e, list) {
-        // const taskID = e.dataTransfer.getData("taskID");
-        // const task = this.tasks.find((task) => task.id == taskID);
-        this.$store.commit("setInProgress", this.$store.state.selectedTask[0]);
+        if (this.$store.state.taskOnDrag.id) {
+          if (this.$store.state.taskOnDrag.status == "pending") {
+            this.$store.commit("removePending", this.$store.state.taskOnDrag);
+          }
+        }
+        // set status to based on new column //
+        this.$store.commit("setInProgress", this.$store.state.taskOnDrag);
+        this.$store.commit("setOnDrag", {});
       },
     };
   },

@@ -63,9 +63,8 @@ export default defineComponent({
     startDrag(e, task) {
       e.dataTransfer.dropEffect = "move";
       e.dataTransfer.effectAllowed = "move";
-      // e.dataTransfer.setData("taskID", task.id);
-      // const dataTransfer = e.dataTransfer.setData("taskID", task.id);
       this.$store.commit("setSelectedTask", task);
+      this.$store.commit("setOnDrag", task);
     },
   },
 

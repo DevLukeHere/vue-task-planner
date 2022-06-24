@@ -18,7 +18,6 @@ export default defineComponent({
   methods: {
     setShowSearch() {
       this.$store.commit("setShowSearch");
-      console.log("showSearch:", this.$store.state.showSearch);
     },
   },
 });
