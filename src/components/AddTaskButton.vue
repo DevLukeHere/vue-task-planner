@@ -26,7 +26,7 @@
             label="title*"
             required
             variant="outlined"
-            @change="setTask"
+            @change="setTaskTitle"
           ></v-text-field>
           <v-textarea
             outlined
@@ -38,24 +38,25 @@
           ></v-textarea>
           <p class="task-status-title">please select status of task</p>
           <v-row>
-            <v-radio-group v-model="inline" inline>
+            <v-radio-group
+              v-model="this.$store.state.status"
+              inline
+              @change="setStatus($event)"
+            >
               <v-radio
                 color="hsl(0, 85%, 70%)"
                 label="pending"
                 value="pending"
-                disabled
               ></v-radio>
               <v-radio
                 color="hsl(34, 86%, 70%)"
-                label="processing"
-                value="processing"
-                disabled
+                label="in progress"
+                value="inProgress"
               ></v-radio>
               <v-radio
                 color="hsl(138, 86%, 55%)"
-                label="done"
-                value="done"
-                disabled
+                label="completed"
+                value="completed"
               ></v-radio>
             </v-radio-group>
           </v-row>
@@ -89,12 +90,12 @@
           :style="{ textTransform: `lowercase` }"
           prepend-icon="mdi-sticker-plus-outline"
           :disabled="
-            !this.$store.state.task || !this.$store.state.taskDescription
+            !this.$store.state.taskTitle || !this.$store.state.taskDescription
               ? true
               : false
           "
           text
-          @click="setPending"
+          @click="addTask"
         >
           add task
         </v-btn>
@@ -115,24 +116,27 @@ export default defineComponent({
   },
 
   methods: {
-    setPending() {
+    addTask() {
       let id = Math.floor(Math.random() * 100);
       const params = {
         id: id,
-        title: this.$store.state.task,
+        title: this.$store.state.taskTitle,
         description: this.$store.state.taskDescription,
-        // status: this.$store.state.status,
-        status: "pending",
+        status: this.$store.state.status,
         tags: this.$store.state.tags,
       };
-      this.$store.commit("setPending", params);
+      this.$store.commit("addTask", params);
       this.$refs.form.reset();
       this.$store.commit("clearForm");
       this.dialog = false;
     },
-    setTask(e) {
-      const task = e.target.value;
-      this.$store.commit("setTask", task);
+    setStatus(e) {
+      const status = e.target.value;
+      this.$store.commit("setStatus", status);
+    },
+    setTaskTitle(e) {
+      const taskTitle = e.target.value;
+      this.$store.commit("setTaskTitle", taskTitle);
     },
     setDescription(e) {
       const description = e.target.value;
