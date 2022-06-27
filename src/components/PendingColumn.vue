@@ -10,7 +10,12 @@
       }}</span>
       task<span v-if="this.$store.state.pending.length > 1">s</span> to complete
     </h4>
-    <div class="pending-column">
+    <div
+      @drop="onDrop"
+      @dragover.prevent
+      @dragenter.prevent
+      class="pending-column"
+    >
       <TaskCard />
     </div>
   </div>
@@ -26,7 +31,16 @@ export default defineComponent({
   components: { TaskCard },
 
   methods: {
-    //
+    onDrop() {
+      // if (this.$store.state.taskOnDrag.id) {
+      //   if (this.$store.state.taskOnDrag.status == "pending") {
+      //     this.$store.commit("removePending", this.$store.state.taskOnDrag);
+      //   }
+      // }
+      // // set status to based on new column //
+      // this.$store.commit("setInProgress", this.$store.state.taskOnDrag);
+      // this.$store.commit("setOnDrag", {});
+    },
   },
 
   data() {
