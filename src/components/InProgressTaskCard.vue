@@ -5,6 +5,8 @@
     tonal
     variant="outlined"
     class="task-card mb-8"
+    :draggable="true"
+    @dragstart="startDrag($event, task)"
   >
     <v-card-title class="card-title-processing">{{ task.title }}</v-card-title>
     <v-card-text
@@ -50,13 +52,19 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "ProcessingTaskCard",
+  name: "InProgressTaskCard",
 
   components: {},
 
   methods: {
     deleteTask(task) {
       this.$store.commit("removeInProgress", task);
+    },
+    startDrag(e, task) {
+      e.dataTransfer.dropEffect = "move";
+      e.dataTransfer.effectAllowed = "move";
+      this.$store.commit("setSelectedTask", task);
+      this.$store.commit("setOnDrag", task);
     },
   },
 
