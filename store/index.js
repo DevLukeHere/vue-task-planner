@@ -4,9 +4,9 @@ import { createStore } from "vuex";
 export default createStore({
   state() {
     return {
-      task: "",
+      taskTitle: "",
       taskDescription: "",
-      status: "",
+      status: "pending",
       tags: [],
       pending: [],
       inProgress: [],
@@ -17,11 +17,23 @@ export default createStore({
     };
   },
   mutations: {
-    setTask(state, payload) {
-      state.task = payload;
+    setTaskTitle(state, payload) {
+      state.taskTitle = payload;
     },
     setTaskDescription(state, payload) {
       state.taskDescription = payload;
+    },
+    setStatus(state, payload) {
+      state.status = payload;
+    },
+    addTask(state, payload) {
+      if (payload.status === "pending") {
+        state.pending = [...state.pending, payload];
+      } else if (payload.status === "inProgress") {
+        state.inProgress = [...state.inProgress, payload];
+      } else {
+        state.completed = [...state.completed, payload];
+      }
     },
     setPending(state, payload) {
       state.pending = [...state.pending, payload];
@@ -51,7 +63,7 @@ export default createStore({
       state.completed.splice(index, 1);
     },
     clearForm(state, payload) {
-      state.task = "";
+      state.taskTitle = "";
       state.taskDescription = "";
       state.status = "";
       state.tags = [];
