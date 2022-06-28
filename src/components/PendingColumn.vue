@@ -32,18 +32,21 @@ export default defineComponent({
 
   methods: {
     onDrop() {
-      // if (this.$store.state.taskOnDrag.id) {
-      //   if (this.$store.state.taskOnDrag.status == "pending") {
-      //     this.$store.commit("removePending", this.$store.state.taskOnDrag);
-      //   } else if (this.$store.state.taskOnDrag.status == "inProgress") {
-      //     this.$store.commit("removeInProgress", this.$store.state.taskOnDrag);
-      //   } else {
-      //     this.$store.commit("removeCompleted", this.$store.state.taskOnDrag);
-      //   }
-      // }
-      // set status to based on new column //
-      // this.$store.commit("setPending", this.$store.state.taskOnDrag);
-      // this.$store.commit("setOnDrag", {});
+      if (this.$store.state.taskOnDrag.id) {
+        if (this.$store.state.taskOnDrag.status == "pending") {
+          this.$store.commit("removePending", this.$store.state.taskOnDrag);
+        } else if (this.$store.state.taskOnDrag.status == "inProgress") {
+          this.$store.commit("removeInProgress", this.$store.state.taskOnDrag);
+        } else {
+          this.$store.commit("removeCompleted", this.$store.state.taskOnDrag);
+        }
+      }
+
+      this.$store.commit("setPending", this.$store.state.taskOnDrag);
+      this.$store.state.pending.map((task) => {
+        task.status = "pending";
+      });
+      this.$store.commit("setOnDrag", {});
     },
   },
 

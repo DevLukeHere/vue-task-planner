@@ -48,8 +48,11 @@ export default defineComponent({
             this.$store.commit("removeCompleted", this.$store.state.taskOnDrag);
           }
         }
-        // set status to based on new column //
+
         this.$store.commit("setInProgress", this.$store.state.taskOnDrag);
+        this.$store.state.inProgress.map((task) => {
+          task.status = "inProgress";
+        });
         this.$store.commit("setOnDrag", {});
       },
     };

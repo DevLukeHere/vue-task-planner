@@ -10,7 +10,14 @@
       }}</span>
       task<span v-if="this.$store.state.completed.length > 1">s</span>
     </h4>
-    <div class="done-column"><CompletedTaskCard /></div>
+    <div
+      @drop="onDrop"
+      @dragover.prevent
+      @dragenter.prevent
+      class="done-column"
+    >
+      <CompletedTaskCard />
+    </div>
   </div>
 </template>
 
@@ -23,7 +30,25 @@ export default defineComponent({
 
   components: { CompletedTaskCard },
 
-  methods: {},
+  methods: {
+    onDrop() {
+      if (this.$store.state.taskOnDrag.id) {
+        if (this.$store.state.taskOnDrag.status == "pending") {
+          this.$store.commit("removePending", this.$store.state.taskOnDrag);
+        } else if (this.$store.state.taskOnDrag.status == "inProgress") {
+          this.$store.commit("removeInProgress", this.$store.state.taskOnDrag);
+        } else {
+          this.$store.commit("removeCompleted", this.$store.state.taskOnDrag);
+        }
+      }
+
+      this.$store.commit("setCompleted", this.$store.state.taskOnDrag);
+      this.$store.state.completed.map((task) => {
+        task.status = "completed";
+      });
+      this.$store.commit("setOnDrag", {});
+    },
+  },
 
   data() {
     return {

@@ -35,7 +35,7 @@ export default createStore({
       }
     },
     setPending(state, payload) {
-      state.pending = [...state.pending, payload, (payload.status = "pending")];
+      state.pending = [...state.pending, payload];
     },
     removePending(state, payload) {
       let index = state.pending.findIndex(
@@ -44,11 +44,7 @@ export default createStore({
       state.pending.splice(index, 1);
     },
     setInProgress(state, payload) {
-      state.inProgress = [
-        ...state.inProgress,
-        payload,
-        (payload.status = "inProgress"),
-      ];
+      state.inProgress = [...state.inProgress, payload];
     },
     removeInProgress(state, payload) {
       let index = state.inProgress.findIndex(
@@ -57,11 +53,7 @@ export default createStore({
       state.inProgress.splice(index, 1);
     },
     setCompleted(state, payload) {
-      state.completed = [
-        ...state.completed,
-        payload,
-        (payload.status = "completed"),
-      ];
+      state.completed = [...state.completed, payload];
     },
     removeCompleted(state, payload) {
       let index = state.completed.findIndex(
@@ -79,6 +71,7 @@ export default createStore({
       state.showSearch = !state.showSearch;
     },
     setOnDrag(state, payload) {
+      console.log("setOnDrag:", payload);
       state.taskOnDrag = payload;
     },
   },

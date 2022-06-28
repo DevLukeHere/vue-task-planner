@@ -5,6 +5,8 @@
     tonal
     variant="outlined"
     class="task-card mb-8"
+    :draggable="true"
+    @dragstart="startDrag($event, task)"
   >
     <v-card-title class="card-title-completed">{{ task.title }}</v-card-title>
     <v-card-text
@@ -26,7 +28,7 @@
         ><v-icon icon="mr-1 mdi-timer-sand"></v-icon>status:{{ " " }}</span
       >{{ task.status }}
     </v-card-text>
-    <v-card-text v-if="task.tags.length !== 0">
+    <!-- <v-card-text v-if="task.tags.length !== 0">
       <p class="tags-subtitle mb-2">
         <v-icon icon="mr-1 mdi-tag-multiple-outline"></v-icon>tags
       </p>
@@ -39,7 +41,7 @@
         outlined
         >{{ tag }}</v-chip
       >
-    </v-card-text>
+    </v-card-text> -->
     <v-card-actions>
       <v-btn
         v-on:click="deleteTask(task)"
@@ -62,6 +64,11 @@ export default defineComponent({
   methods: {
     deleteTask(task) {
       this.$store.commit("removeCompleted", task);
+    },
+    startDrag(e, task) {
+      e.dataTransfer.dropEffect = "move";
+      e.dataTransfer.effectAllowed = "move";
+      this.$store.commit("setOnDrag", task);
     },
   },
 
