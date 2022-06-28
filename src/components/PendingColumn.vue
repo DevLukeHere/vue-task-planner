@@ -28,7 +28,7 @@ import PendingTaskCard from "./PendingTaskCard.vue";
 export default defineComponent({
   name: "PendingColumn",
 
-  components: { TaskCard },
+  components: { PendingTaskCard },
 
   methods: {
     onDrop() {
