@@ -21,7 +21,7 @@
       <v-card-text>
         <v-form ref="form" v-model="valid" lazy-validation>
           <v-text-field
-            v-model="task"
+            v-model="this.$store.state.taskTitle"
             :rules="nameRules"
             label="title*"
             required
@@ -33,7 +33,7 @@
             label="description*"
             required
             variant="outlined"
-            v-model="description"
+            v-model="this.$store.state.taskDescription"
             @change="setDescription"
           ></v-textarea>
           <p class="task-status-title">please select status of task</p>
@@ -126,7 +126,7 @@ export default defineComponent({
         tags: this.$store.state.tags,
       };
       this.$store.commit("addTask", params);
-      this.$refs.form.reset();
+      // this.$refs.form.reset();
       this.$store.commit("clearForm");
       this.dialog = false;
     },
@@ -144,7 +144,7 @@ export default defineComponent({
     },
     closeDialog() {
       this.dialog = false;
-      this.$refs.form.reset();
+      // this.$refs.form.reset();
       this.$store.commit("clearForm");
     },
   },
