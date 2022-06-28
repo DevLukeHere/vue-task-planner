@@ -16,14 +16,14 @@
       @dragenter.prevent
       class="pending-column"
     >
-      <TaskCard />
+      <PendingTaskCard />
     </div>
   </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
-import TaskCard from "./TaskCard.vue";
+import PendingTaskCard from "./PendingTaskCard.vue";
 
 export default defineComponent({
   name: "PendingColumn",
