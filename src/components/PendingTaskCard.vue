@@ -23,6 +23,11 @@
         }}</span
       >3 Aug at 13:00</v-card-text
     >
+    <v-card-text>
+      <span class="task-subtitle"
+        ><v-icon icon="mr-1 mdi-timer-sand"></v-icon>status:{{ " " }}</span
+      >{{ task.status }}
+    </v-card-text>
     <v-card-text v-if="task.tags.length !== 0">
       <p class="tags-subtitle mb-2">
         <v-icon icon="mr-1 mdi-tag-multiple-outline"></v-icon>tags
@@ -52,7 +57,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "TaskCard",
+  name: "PendingTaskCard",
 
   components: {},
 
