@@ -71,7 +71,6 @@ export default createStore({
       state.showSearch = !state.showSearch;
     },
     setOnDrag(state, payload) {
-      console.log("setOnDrag:", payload);
       state.taskOnDrag = payload;
     },
   },
